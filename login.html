@@ -98,20 +98,21 @@
       color: #004DFF;
       text-decoration: none;
     }
-
   </style>
 </head>
+
 <body>
   <div class="loginbox">
     <img src="https://media.licdn.com/dms/image/v2/D4D12AQGwII967WGXSg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1689056893250?e=2147483647&v=beta&t=Uk3-clWucygMOi3NIzg-Z-5xd-8pCOfKN7co1Q5tSnw" alt="Logo" class="login">
     <h2>إنشاء حساب</h2>
+
     <form id="registerForm">
       <p>البريد الإلكتروني</p>
       <input type="email" id="regEmail" placeholder="أدخل البريد الإلكتروني" required>
-      
+
       <p>كلمة المرور</p>
       <input type="password" id="regPassword" placeholder="*******" required>
-      
+
       <input type="checkbox" id="terms" required>
       <label for="terms">
         أوافق على <a href="Shrawtd.html" id="term" class="btn">الشروط والأحكام</a>
@@ -119,122 +120,65 @@
 
       <input type="submit" value="إنشاء حساب">
     </form>
-    
+
     <a href="index.html" class="a">لديك حساب؟ تسجيل الدخول</a>
   </div>
 
-  <script>
-let termsRead = false;
-
-// عند الضغط على زر "الشروط والأحكام"
-document.getElementById('term').addEventListener('click', function(e) {
-  e.preventDefault(); // منع الرابط من التحويل إلى صفحة أخرى
+<script>
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
   
-  // حفظ حالة الشروط في localStorage
-  localStorage.setItem('termsRead', 'false');
+  const email = document.getElementById('regEmail').value;
+  const password = document.getElementById('regPassword').value;
+  const termsAccepted = document.getElementById('terms').checked;
   
-  // الانتقال إلى صفحة الشروط والأحكام
-  window.location.href = 'Shrawtd.html';
+  if (!termsAccepted) {
+    alert('يجب الموافقة على الشروط والأحكام.');
+    return;
+  }
+  
+  localStorage.setItem('registeredEmail', email);
+  localStorage.setItem('registeredPassword', password);
+  
+  alert('تم إنشاء الحساب بنجاح!');
+  window.location.href = 'index.html';
+  
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value();
+  
+  // استرجاع بيانات المستخدم المحفوظة
+  const registeredEmail = localStorage.getItem('registeredEmail');
+  const registeredPassword = localStorage.getItem('registeredPassword');
+  
+  // تحقق إذا كان البريد الإلكتروني المحظور
+  blockUser(email); // استخدام الدالة للتحقق من الحظر
+  
+  // التحقق من تسجيل الدخول
+  if (email === registeredEmail && password === registeredPassword) {
+    alert('تم تسجيل الدخول بنجاح!');
+    window.location.href = 'home.html'; // توجيه إلى الصفحة الرئيسية
+  } else {
+    alert('بيانات الدخول غير صحيحة.');
+  }
 });
-
-// عند تقديم النموذج في صفحة التسجيل
-الشروط والأحكام
-if (window.location.pathname.includes('Shrawtd.html')) {
-  // التحقق من حالة الشروط
-  const termsStatus = localStorage.getItem('termsRead');
+});
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
   
-  if (termsStatus === 'true') {
-    // إذا تم قبول الشروط سابقًا
-    window.location.href = 'index.html'; // إعادة التوجيه إلى الصفحة الرئيسية
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  const storedData = JSON.parse(localStorage.getItem('userData'));
+  
+  if (storedData && storedData.email === email && storedData.password === password) {
+    alert('تم تسجيل الدخول بنجاح!');
+    window.location.href = 'index.html'; // تعديل حسب صفحتك الرئيسية
+  } else {
+    alert('البريد الإلكتروني أو كلمة المرور غير صحيحة.');
   }
-  
-  // عند الضغط على زر "موافق"
-  document.getElementById('agreeBtn').addEventListener('click', function() {
-    localStorage.setItem('termsRead', 'true'); // حفظ الموافقة على الشروط
-    window.location.href = 'index.html'; // العودة إلى صفحة التسجيل
-  });
-}
-
-// دالة للتحقق من نوع البريد الإلكتروني
-function validateEmail(email) {
-  const fakeDomains = ['yahoo.com', 'mail.com', 'aol.com']; // أمثلة على نطاقات وهمية
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // تعبير منتظم للتحقق من صحة البريد الإلكتروني
-  
-  // التحقق من صحة البريد الإلكتروني بناءً على التنسيق
-  if (!regex.test(email)) {
-    return 'غير صالح';
-  }
-  
-  // استخراج النطاق من البريد الإلكتروني
-  const domain = email.split('@')[1];
-  
-  // التحقق إذا كان البريد الإلكتروني يحتوي على نطاق وهمي
-  if (fakeDomains.includes(domain)) {
-    return 'وهمي';
-  }
-  
-  return 'حقيقي';
-}
-    // دالة لعرض نافذة منبثقة للموافقة أو الرفض
-    function showCustomConfirm(message, onConfirm, onCancel) {
-      const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
-      overlay.style.display = 'flex';
-      overlay.style.justifyContent = 'center';
-      overlay.style.alignItems = 'center';
-      overlay.style.zIndex = '1000';
-
-      const confirmBox = document.createElement('div');
-      confirmBox.style.backgroundColor = '#fff';
-      confirmBox.style.padding = '20px';
-      confirmBox.style.borderRadius = '8px';
-      confirmBox.style.textAlign = 'center';
-      confirmBox.style.width = '300px';
-
-      const messageText = document.createElement('p');
-      messageText.textContent = message;
-      messageText.style.marginBottom = '20px';
-
-      const confirmBtn = document.createElement('button');
-      confirmBtn.textContent = 'موافق';
-      confirmBtn.style.backgroundColor = '#007BFF';
-      confirmBtn.style.color = '#fff';
-      confirmBtn.style.border = 'none';
-      confirmBtn.style.padding = '10px 20px';
-      confirmBtn.style.borderRadius = '5px';
-      confirmBtn.style.marginRight = '10px';
-      confirmBtn.style.cursor = 'pointer';
-      confirmBtn.addEventListener('click', () => {
-        overlay.remove();
-        onConfirm();
-      });
-
-      const cancelBtn = document.createElement('button');
-      cancelBtn.textContent = 'تراجع';
-      cancelBtn.style.backgroundColor = '#DC3545';
-      cancelBtn.style.color = '#fff';
-      cancelBtn.style.border = 'none';
-      cancelBtn.style.padding = '10px 20px';
-      cancelBtn.style.borderRadius = '5px';
-      cancelBtn.style.cursor = 'pointer';
-      cancelBtn.addEventListener('click', () => {
-        overlay.remove();
-        onCancel();
-      });
-
-      confirmBox.appendChild(messageText);
-      confirmBox.appendChild(confirmBtn);
-      confirmBox.appendChild(cancelBtn);
-      overlay.appendChild(confirmBox);
-      document.body.appendChild(overlay);
-    }
-  </script>
-
-
+});
+</script>
 </body>
 </html>

@@ -5,11 +5,179 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>جميع البيانات محفوظة هنا</title>
-
 </head>
-<body>
-  <h3>جمع بيانات المستخدمين</h3>
+</body>
+</html>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87C6ED;
+      margin: 0;
+      padding: 10px;
+    }
 
+    h3 {
+      width: 250px;
+      margin-left: 25%;
+      background: #0975C9;
+      box-shadow: #3A4F60 5px 5px 5px;
+      border: 1px solid #000000;
+      text-align: center;
+      color: #FFF700;
+      margin-bottom: 20px;
+    }
+
+    .imges {
+      width: 150px;
+      margin-left: 25%;
+      background: #0975C9;
+      border: 1px solid #000000;
+      text-align: center;
+      color: #FFF700;
+      margin-bottom: 20px;
+    }
+
+    .text-imges {
+      width: 300px;
+      margin-left: 25%;
+      background: #0975C9;
+      border: 1px solid #000000;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 75%;
+      height: 5px;
+      color: #FFFFFF;
+      margin: 15px auto;
+      border-collapse: collapse;
+      background-color: #EC5252;
+      box-shadow: #3A4F60 5px 5px 5px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      height: 2px;
+      background-color: #3D49F9;
+    }
+
+    td {
+      font-weight: bold;
+    }
+
+    td#email, td#password, td#emailType, td#IP-1, td#IP-2, td#location {
+      color: #FFFFFF;
+    }
+  </style>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87C6ED;
+      margin: 0;
+      padding: 10px;
+    }
+
+    h3 {
+      width: 250px;
+      margin-left: 25%;
+      background: #0975C9;
+      box-shadow: #3A4F60 5px 5px 5px;
+      border: 1px solid #000000;
+      text-align: center;
+      color: #FFF700;
+      margin-bottom: 20px;
+    }
+
+    .imges {
+      width: 150px;
+      margin-left: 25%;
+      background: #0975C9;
+      border: 1px solid #000000;
+      text-align: center;
+      color: #FFF700;
+      margin-bottom: 20px;
+    }
+
+    .text-imges {
+      width: 300px;
+      margin-left: 25%;
+      background: #0975C9;
+      border: 1px solid #000000;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 75%;
+      height: 5px;
+      color: #FFFFFF;
+      margin: 15px auto;
+      border-collapse: collapse;
+      background-color: #EC5252;
+      box-shadow: #3A4F60 5px 5px 5px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      height: 2px;
+      background-color: #3D49F9;
+    }
+
+    td {
+      font-weight: bold;
+    }
+
+    td#email, td#password, td#emailType, td#IP-1, td#IP-2, td#location {
+      color: #FFFFFF;
+    }
+    .textbox{
+      background: #B3EC84;
+      margin: 5px;
+      border: 1px solid #000000;
+      border-radius: 20px;
+      text-align: center;
+    }
+    button{
+      background: #0A547F;
+      color: #FFFFFF;
+      margin: 5px;
+      border: 1px solid #000000;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: #1B4372 5px 5px 5px;
+    }
+    button :hover{
+      background: #9C8181;
+
+    }
+    .viduo{
+      width: 100px;
+      height: 100px;
+      background: #8AB8EE;
+    }
+  </style>
+  <body>
+  
+  <h3>جمع بيانات المستخدمين</h3>
+  
   <table>
     <tr>
       <th>البريد الإلكتروني</th>
@@ -22,7 +190,7 @@
       <td id="emailType">جاري التحميل...</td>
     </tr>
   </table>
-
+  
   <table>
     <tr>
       <th>العنوان العام (IP)</th>
@@ -35,11 +203,23 @@
       <td id="location">جاري التحميل...</td>
     </tr>
   </table>
-
+  
   <div class="text-imges">
     <p id="device">جاري التحميل...</p>
   </div>
-
+  
+  <div class="textbox">
+    تصغير شاشة الجوال لتظهر معك جميع البيانات
+  </div>
+    <div class="textbox">
+    اضغط بالصبعين على شاشة الجوال ثم صغر     
+  </div>
+  <div class="viduo" id="#viduo">
+    
+  </div>
+  <a href="#viduo">
+    <button >احتاج  إلى شرح اضغط هنا</button>
+   </a>
   <script>
     window.onload = function() {
       const email = localStorage.getItem('registeredEmail');
@@ -47,6 +227,7 @@
 
       if (email && password) {
         const emailType = validateEmail(email);
+        
         document.getElementById('email').innerText = email;
         document.getElementById('password').innerText = password;
         document.getElementById('emailType').innerText = emailType;
@@ -119,72 +300,6 @@
       }
     }
   </script>
-</body>
-</html>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #87C6ED;
-      margin: 0;
-      padding: 10px;
-    }
+  </body>
+  </html>
 
-    h3 {
-      width: 250px;
-      margin-left: 25%;
-      background: #0975C9;
-      box-shadow: #3A4F60 5px 5px 5px;
-      border: 1px solid #000000;
-      text-align: center;
-      color: #FFF700;
-      margin-bottom: 20px;
-    }
-
-    .imges {
-      width: 150px;
-      margin-left: 25%;
-      background: #0975C9;
-      border: 1px solid #000000;
-      text-align: center;
-      color: #FFF700;
-      margin-bottom: 20px;
-    }
-
-    .text-imges {
-      width: 300px;
-      margin-left: 25%;
-      background: #0975C9;
-      border: 1px solid #000000;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    table {
-      width: 75%;
-      height: 5px;
-      color: #FFFFFF;
-      margin: 15px auto;
-      border-collapse: collapse;
-      background-color: #EC5252;
-      box-shadow: #3A4F60 5px 5px 5px;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: center;
-    }
-
-    th {
-      height: 2px;
-      background-color: #3D49F9;
-    }
-
-    td {
-      font-weight: bold;
-    }
-
-    td#email, td#password, td#emailType, td#IP-1, td#IP-2, td#location {
-      color: #FFFFFF;
-    }
-  </style>

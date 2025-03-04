@@ -93,6 +93,9 @@
       padding: 5px 10px;
       border-radius: 5px;
     }
+    h3{
+      color: #E4FF00;
+    }
   </style>
 </head>
 <body>
@@ -110,27 +113,74 @@
     </form>
     <!-- رابط لإنشاء حساب إذا لم يكن لدى المستخدم حساب -->
     <a href="login.html" class="a">ليس لديك حساب ؟ أنشاء حساب</a>
+    <h3>wellcom</h3>
   </div>
   
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // الحصول على بيانات الدخول
-      var email = document.getElementById('loginEmail').value;
-      var password = document.getElementById('loginPassword').value;
-      
-      // استرجاع بيانات المستخدم من localStorage
-      var registeredEmail = localStorage.getItem('registeredEmail');
-      var registeredPassword = localStorage.getItem('registeredPassword');
-      
-      // التحقق من صحة بيانات الدخول
-      if(email === registeredEmail && password === registeredPassword) {
-        // الدخول ناجح، إعادة التوجيه إلى الصفحة الرئيسية
-        window.location.href = 'home.html';
-      } else {
-        alert('بيانات الدخول غير صحيحة. الرجاء التأكد من إنشاء حساب.');
-      }
-    });
-  </script>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    // استرجاع بيانات المستخدم
+    const registeredEmail = localStorage.getItem('registeredEmail');
+    const registeredPassword = localStorage.getItem('registeredPassword');
+    
+    // التحقق من المطابقة
+    if (email === registeredEmail && password === registeredPassword) {
+      alert('تم تسجيل الدخول بنجاح!');
+      window.location.href = 'home.html'; // التوجيه للصفحة الرئيسية
+    } else {
+      alert('بيانات الدخول غير صحيحة. تأكد من البريد وكلمة المرور.');
+    }
+  });
+  
+// قائمة البريد الإلكتروني المحظور
+const blockedEmails = ['blockedemail@example.com', 'anotherblockedemail@example.com'];
+
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('regEmail').value;
+
+    // التحقق إذا كان البريد المدخل محظورًا
+    if (blockedEmails.includes(email)) {
+        alert('تم حظر هذا البريد الإلكتروني. لا يمكنك التسجيل باستخدام هذا الحساب.');
+    } else {
+        // متابعة التسجيل
+        alert('تم إنشاء الحساب بنجاح!');
+        // هنا يمكن إضافة أكواد التسجيل الفعلية
+    }
+});
+
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+
+    // التحقق إذا كان البريد المدخل محظورًا
+    if (blockedEmails.includes(email)) {
+        alert('تم حظر هذا البريد الإلكتروني. لا يمكنك تسجيل الدخول باستخدام هذا الحساب.');
+    } else {
+        // متابعة تسجيل الدخول
+        alert('تم تسجيل الدخول بنجاح!');
+        // هنا يمكن إضافة أكواد تسجيل الدخول الفعلية
+    }
+});
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  const storedData = JSON.parse(localStorage.getItem('userData'));
+  
+  if (storedData && storedData.email === email && storedData.password === password) {
+    alert('تم تسجيل الدخول بنجاح!');
+    window.location.href = 'index.html'; // تعديل حسب صفحتك الرئيسية
+  } else {
+    alert('البريد الإلكتروني أو كلمة المرور غير صحيحة.');
+  }
+});
+</script>
+  
 </body>
 </html>
