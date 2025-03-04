@@ -352,8 +352,8 @@ function verifyPassword() {
 
       function handleBadWords() {
         const warningMessage = warningGiven ?
-          "⚠️ لقد تم حظرك مؤقتًا..." :
-          "❌ تحذير: تم الاحتفاظ بنسخة من محادثاتك كإنذار أول...";
+          "⚠️ لقد تم حظرك مؤقتًا وتم ..." :
+          "❌ تحذير: تم الاحتفاظ بنسخة من محادثاتك كإنذار أول وتم ارسال  نسخة الى صاحب الموقع لاتخاذ الاجراءة اللازمة وتسجل في النظام كا رسالة خطاء قام به المستخدم ...";
         
         addMessage(warningMessage, "ai");
         warningGiven = true;
