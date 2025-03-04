@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>الصفحة الرئيسية</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRiByIu-lrVNFhhpiJFLWnmFucQiBP8beJ4g&usqp=CAU');
+      background-size: cover;
+      font-family: sans-serif;
+    }
+    .loginbox {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 350px;
+      height: 420px;
+      padding: 80px 40px;
+      box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .login {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: calc(-100px/2);
+      left: calc(50% - 50px);
+    }
+    h2 {
+      margin: 0;
+      padding: 0 0 20px;
+      color: #efed40;
+      text-align: center;
+    }
+    .loginbox p {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      color: #fff;
+    }
+    .loginbox input {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .loginbox input[type="text"],
+    .loginbox input[type="password"],
+    .loginbox input[type="email"] {
+      border: none;
+      border-bottom: 1px solid #fff;
+      background: transparent;
+      outline: none;
+      height: 40px;
+      color: #fff;
+      font-size: 16px;
+    }
+    ::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .loginbox input[type="submit"] {
+      border: none;
+      outline: none;
+      height: 40px;
+      color: #fff;
+      font-size: 16px;
+      background: green;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+    .loginbox input[type="submit"]:hover {
+      background: #efed40;
+      color: #262626;
+    }
+    .a {
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 5%;
+    }
+    button {
+      margin: 5%;
+      color: #3100FF;
+      font-size: 14px;
+      
+      font-weight: bold;
+      text-decoration: none;
+      background: #FF0000;
+      display: inline-block;
+      width: 45%;
+      height: 45px;
+      border-radius: 5px;
+    }
+    button.{
+      background: #DB3434;
+    }
+  </style>
+</head>
+<body>
+  <div class="loginbox">
+    <img src="https://media.licdn.com/dms/image/v2/D4D12AQGwII967WGXSg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1689056893250?e=2147483647&v=beta&t=Uk3-clWucygMOi3NIzg-Z-5xd-8pCOfKN7co1Q5tSnw" alt="Logo" class="login">
+    <h2>مرحباً بك!</h2>
+    <p> هل تريد تسجيل الخروج؟  .</p>
+    <!-- يمكن إضافة روابط أو محتويات أخرى للصفحة الرئيسية -->
+    <button>
+    <a href="index.html" class="a">
+      تسجيل الخروج
+      </button>
+      </a>
+  </div>
+</body>
+</html>

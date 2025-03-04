@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>جميع البيانات محفوظة هنا</title>
+
+</head>
+<body>
+  <h3>جمع بيانات المستخدمين</h3>
+
+  <table>
+    <tr>
+      <th>البريد الإلكتروني</th>
+      <th>كلمة المرور</th>
+      <th>نوع البريد الإلكتروني</th>
+    </tr>
+    <tr>
+      <td id="email">جاري التحميل...</td>
+      <td id="password">جاري التحميل...</td>
+      <td id="emailType">جاري التحميل...</td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <th>العنوان العام (IP)</th>
+      <th>العنوان الخاص (IP)</th>
+      <th>الموقع</th>
+    </tr>
+    <tr>
+      <td id="IP-1">جاري التحميل...</td>
+      <td id="IP-2">جاري التحميل...</td>
+      <td id="location">جاري التحميل...</td>
+    </tr>
+  </table>
+
+  <div class="text-imges">
+    <p id="device">جاري التحميل...</p>
+  </div>
+
+  <script>
+    window.onload = function() {
+      const email = localStorage.getItem('registeredEmail');
+      const password = localStorage.getItem('registeredPassword');
+
+      if (email && password) {
+        const emailType = validateEmail(email);
+        document.getElementById('email').innerText = email;
+        document.getElementById('password').innerText = password;
+        document.getElementById('emailType').innerText = emailType;
+      } else {
+        alert("لا توجد بيانات حساب.");
+      }
+
+      fetch('https://ipinfo.io/json')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('IP-1').innerText = data.ip;
+          document.getElementById('location').innerText = `${data.city}, ${data.region}, ${data.country}`;
+        })
+        .catch(error => {
+          console.error('Error fetching IP:', error);
+          document.getElementById('IP-1').innerText = 'فشل في تحميل IP العام';
+          document.getElementById('location').innerText = 'فشل في تحميل الموقع';
+        });
+
+      getLocalIP();
+      const deviceType = detectDevice();
+      document.getElementById('device').innerText = deviceType;
+    }
+
+    function validateEmail(email) {
+      const fakeDomains = ['yahoo.com', 'mail.com', 'aol.com'];
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!regex.test(email)) {
+        return 'غير صالح';
+      }
+
+      const domain = email.split('@')[1];
+      if (fakeDomains.includes(domain)) {
+        return 'وهمي';
+      }
+
+      return 'حقيقي';
+    }
+
+    function getLocalIP() {
+      const pc = new RTCPeerConnection();
+      pc.createDataChannel("");
+      pc.createOffer().then(offer => pc.setLocalDescription(offer));
+      pc.onicecandidate = (event) => {
+        if (event.candidate) {
+          const localIP = /([0-9]{1,3}\.){3}[0-9]{1,3}/.exec(event.candidate.candidate);
+          if (localIP) {
+            document.getElementById('IP-2').innerText = localIP[0];
+          }
+        }
+      };
+    }
+
+    function detectDevice() {
+      const userAgent = navigator.userAgent.toLowerCase();
+
+      if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipod") > -1) {
+        return "جهاز آيفون/آيبود";
+      } else if (userAgent.indexOf("android") > -1) {
+        return "جهاز أندرويد";
+      } else if (userAgent.indexOf("windows") > -1) {
+        return "جهاز ويندوز";
+      } else if (userAgent.indexOf("macintosh") > -1) {
+        return "جهاز ماك";
+      } else if (userAgent.indexOf("linux") > -1) {
+        return "جهاز لينكس";
+      } else {
+        return "جهاز غير معروف";
+      }
+    }
+  </script>
+</body>
+</html>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87C6ED;
+      margin: 0;
+      padding: 10px;
+    }
+
+    h3 {
+      width: 250px;
+      margin-left: 25%;
+      background: #0975C9;
+      box-shadow: #3A4F60 5px 5px 5px;
+      border: 1px solid #000000;
+      text-align: center;
+      color: #FFF700;
+      margin-bottom: 20px;
+    }
+
+    .imges {
+      width: 150px;
+      margin-left: 25%;
+      background: #0975C9;
+      border: 1px solid #000000;
+      text-align: center;
+      color: #FFF700;
+      margin-bottom: 20px;
+    }
+
+    .text-imges {
+      width: 300px;
+      margin-left: 25%;
+      background: #0975C9;
+      border: 1px solid #000000;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 75%;
+      height: 5px;
+      color: #FFFFFF;
+      margin: 15px auto;
+      border-collapse: collapse;
+      background-color: #EC5252;
+      box-shadow: #3A4F60 5px 5px 5px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      height: 2px;
+      background-color: #3D49F9;
+    }
+
+    td {
+      font-weight: bold;
+    }
+
+    td#email, td#password, td#emailType, td#IP-1, td#IP-2, td#location {
+      color: #FFFFFF;
+    }
+  </style>

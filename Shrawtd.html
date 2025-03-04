@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تعهد استخدام الذكاء الاصطناعي</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #eef2f5;
+      color: #333;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+    }
+    h1 {
+      text-align: center;
+      color: #34495e;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    p, ol {
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    ol {
+      padding-left: 20px;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    #agree {
+      margin-left: 10px;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow:#02356C 5px 5px 5px;
+      transition: background 0.3s ease;
+      width: 48%;
+    }
+    #acceptBtn {
+      background-color: #27ae60;
+      color: #fff;
+    }
+    #cancelBtn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+    #acceptBtn:hover {
+      background-color: #2ecc71;
+    }
+    #cancelBtn:hover {
+      background-color: #c0392b;
+    }
+    .btn:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+    img{
+      width: 100px;
+      height: 100px;
+      margin-left: 110px;
+      border-radius: 50px;
+      border: 1px solid #F89A9A;
+      box-shadow: #3F5B6C 3px 4px 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img  src="https://media.licdn.com/dms/image/v2/D4D12AQGwII967WGXSg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1689056893250?e=2147483647&v=beta&t=Uk3-clWucygMOi3NIzg-Z-5xd-8pCOfKN7co1Q5tSnw" alt="">
+    <h1>الشروط والاحكام</h1>
+    <p>أقر أنا المستخدم بأنني أتعهد باستخدام أدوات وتقنيات الذكاء الاصطناعي، بما في ذلك أي منصات أو برامج تقدم خدمات الذكاء الاصطناعي، استخدامًا مشروعًا وأخلاقيًا، وألتزم بما يلي:</p>
+    <ol>
+      <li>الاستخدام المسؤول: أتعهد بعدم استخدام الذكاء الاصطناعي في أي أنشطة غير قانونية أو غير أخلاقية.</li>
+      <li>الالتزام بالقوانين: أقر بأن أي استخدام غير مشروع يعرضني للمساءلة القانونية.</li>
+      <li>النيابة العامة: أفهم أن النيابة العامة لها الحق في التدخل واتخاذ الإجراءات القانونية اللازمة.</li>
+      <li>المسؤولية الشخصية: أتحمل كافة العواقب المترتبة على إساءة استخدام هذه التقنية.</li>
+      <li>قبول الشروط: باستخدامي أدوات الذكاء الاصطناعي، فإنني أوافق ضمنيًا على هذا التعهد.</li>
+    </ol>
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="agree" required>
+      <label for="agree">أوافق على جميع الشروط والأحكام وأتحمل المسؤولية الكاملة</label>
+    </div>
+
+    <div class="btn-container">
+      <button class="btn" id="acceptBtn" disabled>موافق</button>
+      <button class="btn" id="cancelBtn">تراجع</button>
+    </div>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById('agree');
+    const acceptBtn = document.getElementById('acceptBtn');
+
+    checkbox.addEventListener('change', function() {
+      acceptBtn.disabled = !checkbox.checked;
+    });
+
+    document.getElementById('acceptBtn').addEventListener('click', function() {
+      if (checkbox.checked) {
+        localStorage.setItem('agreedToTerms', 'true');
+        window.location.href = 'login.html'; // التوجيه إلى صفحة التسجيل
+      } else {
+        alert('يجب الموافقة على الشروط والأحكام قبل المتابعة.');
+      }
+    });
+
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+      alert('تراجعك عن قبول الشروط والأحكام تتحمل مسؤوليتك!');
+      window.location.href = 'Shrawtd.html'; // العودة إلى صفحة تسجيل الدخول
+    });
+  </script>
+
+</body>
+</html>

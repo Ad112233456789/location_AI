@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="موقعي الشخصي - محسن، مطور مواقع ومصمم جرافيك محترف">
+<meta name="keywords" content="تصميم مواقع، برمجة، تصميم جرافيك">
+<meta name="author" content="محسن">
+    <title>موقعي الشخصي</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    /* عام */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-image: url('https://media.licdn.com/dms/image/v2/D4D12AQGwII967WGXSg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1689056893250?e=2147483647&v=beta&t=Uk3-clWucygMOi3NIzg-Z-5xd-8pCOfKN7co1Q5tSnw');
+    
+    }
+
+    /* الشريط العلوي */
+/* الشريط العلوي */
+header {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf-lIdSSqFzPYOa-hb9gVwZ0DvLv9lPG9LoA&s');
+  padding: 1px 0;
+  position: fixed;
+  border: 1px solid #FF0000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #FF0000;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.container img {
+  margin-left: auto; /* دفع الشعار إلى أقصى اليمين */
+}
+
+    /* الأقسام */
+    .section {
+      background: #006DFF59;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .container {
+      color: #FFFFFF;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .h2 {
+      width: 65px;
+      height: 65px;
+      color: #FFFFFF;
+      border-radius: 50px;
+      border: 1px solid #FFFFFF;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    /* الخدمات */
+    .services-grid {
+      color: #000000;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    /* الأزرار */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    /* قسم تواصل معنا */
+    .phone-1 {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .phone {
+      width: 350px;
+      height: 475px;
+      color: #FFFFFF;
+      background: #0165EB7A;
+      border: 2px solid #000000;
+    }
+
+    /* تواصل معنا */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      color: #FFFFFF;
+      margin: 1px;
+      max-width: 300px;
+      margin: auto;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px;
+      background: #007BFF;
+      box-shadow: #3F90E6 5px 5px 5px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buton {
+      font-size: 10px;
+      box-shadow: #5398DD 5px 5px 5px;
+      padding: 5px;
+      background: #007BFFC2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .rating-container {
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: 50px auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .rating-title {
+      font-size: 24px;
+      margin-bottom: 2px;
+      color: #333;
+    }
+
+    .star-rating {
+      font-size: 30px;
+      color: #ccc;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      direction: rtl;
+    }
+
+    .star {
+      transition: color 0.3s ease;
+    }
+
+    .star.active {
+      color: #f39c12;
+    }
+
+    #rating-result {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .border {
+      width: 100px;
+      border: 1px solid #000000;
+    }
+    .code{
+  background: #006DFF59;
+  padding: 60px 20px;
+ 
+  text-align: center;
+}
+.name{
+  color: #FFFFFF;
+  max-width: 1200px;
+  margin: auto;
+}
+/* زر فتح الدردشة */
+#chat-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+}
+
+/* نافذة الدردشة */
+#chat-container {
+  display: none; /* يبدأ مخفي */
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* الهيدر */
+#chat-header {
+  background-color: #0078ff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* زر الإغلاق */
+#close-chat-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* صندوق الرسائل */
+#chat-box {
+  height: 300px;
+  padding: 10px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+/* إدخال النص */
+#chat-input {
+  display: flex;
+  padding: 10px;
+}
+
+#user-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#send-btn {
+  padding: 10px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+</style>
+
+ 
+  <body>
+    <!-- الشريط العلوي -->
+    <header>
+      <a href="https://media.licdn.com/dms/image/v2/D4D12AQGwII967WGXSg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1689056893250?e=2147483647&v=beta&t=Uk3-clWucygMOi3NIzg-Z-5xd-8pCOfKN7co1Q5tSnw">
+      <div class="container">
+        
+        <img src="https://media.licdn.com/dms/image/v2/D4D12AQGwII967WGXSg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1689056893250?e=2147483647&v=beta&t=Uk3-clWucygMOi3NIzg-Z-5xd-8pCOfKN7co1Q5tSnw" alt="" class="h2" />
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#contact"><button class="buton">تواصل معنا</button></a></li>
+            <li><a href="#about"><button class="buton">من نحن</button></a></li>
+            <li><a href="#services"><button class="buton">الخدمات</button></a></li>
+            <li><a href="#home"><button class="buton">الصفحة الرئيسية</button></a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- الصفحة الرئيسية -->
+    <section id="home" class="section">
+      <div class="container">
+        <br />
+        <br />
+        <br />
+        <h2>مرحبًا بكم في موقعي الشخصي</h2>
+        <p>أهلاً بك! أنا محسن، مطور مواقع ومصمم جرافيك محترف. أعمل على إنشاء تجارب رقمية رائعة.</p>
+        <a href="#services" class="btn">تعرف على خدماتي</a>
+        <a href="chatgpt.html" class="btn">التوجه الى صفحة الذكاء الاصطناعي</a>
+      </div>
+    </section>
+
+    <!-- قسم الخدمات -->
+    <section id="services" class="section">
+      <div class="container">
+        <br />
+        <br />
+        <br />
+        <h2>خدماتي</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>تصميم المواقع</h3>
+            <p>أصمم مواقع ويب احترافية تناسب احتياجاتك.</p>
+          </div>
+          <div class="service-card">
+            <h3>البرمجة والتطوير</h3>
+            <p>أطور تطبيقات ويب باستخدام أحدث التقنيات.</p>
+          </div>
+          <div class="service-card">
+            <h3>التصميم الجرافيكي</h3>
+            <p>أصمم شعارات وبوسترات بأسلوب جذاب.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- من نحن -->
+    <section id="about" class="section">
+      <div class="container">
+           <br />
+   <br />
+   <br />
+        <h2>من نحن</h2>
+        <p>أنا محسن، متخصص في البرمجة والتصميم، وأسعى دائمًا لتقديم حلول إبداعية ومبتكرة لعملائي.</p>
+      </div>
+    </section>
+
+    <!-- تواصل معنا -->
+    <section id="contact" class="section">
+         <br />
+   <br />
+   <br />
+      <div class="phone">
+        
+        <h2>تواصل معنا</h2>
+        <form id="contact-form" action="https://docs.google.com/forms/d/e/1FAIpQLSf1QjzM_RzVJ9w6QZJk8aPBR2ZTtbCyJfOqe5qYWujXYJxfog/formResponse" method="POST" target="hidden_iframe" onsubmit="return validateForm();">
+          <label for="name">الاسم:</label>
+          <input type="text" id="name" name="entry.0" placeholder="الاسم" required /><br />
+          <label for="email">البريد الإلكتروني:</label>
+          <input type="email" id="email" name="entry.3" placeholder="البريد الإلكتروني" required /><br />
+          <label for="message">الرسالة:</label>
+          <textarea id="message" name="entry.3" placeholder="الرسالة" required></textarea><br />
+          <button type="submit">إرسال</button>
+        </form>
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+      </div>
+    </section>
+    <!-- قسم التقييم -->
+    <section class="code">
+      <div class="name">
+        <h2>تقييم الموقع</h2>
+        <div class="star-rating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div>
+        <p id="rating-result"></p>
+      </div>
+
+
+<!-- زر فتح الدردشة -->
+<button id="chat-toggle-btn">💬 المساعد الذكي</button>
+
+<!-- نافذة الدردشة -->
+<div id="chat-container">
+  <div id="chat-header">
+    <h3>المساعد الذكي</h3>
+    <button id="close-chat-btn">×</button>
+  </div>
+  <div id="chat-box"></div>
+  <div id="chat-input">
+    <input type="text" id="user-input" placeholder="اكتب سؤالك...">
+    <button id="send-btn">إرسال</button>
+  </div>
+</div>
+
+
+    </section>
+
+    <script>
+      // جلب العناصر
+      const stars = document.querySelectorAll('.star');
+      const ratingResult = document.getElementById('rating-result');
+
+      let ratingCount = 0; // عدد التقييمات
+
+      // إضافة حدث عند الضغط على النجوم
+      stars.forEach((star, index) => {
+        star.addEventListener('click', () => {
+          if (star.classList.contains('active')) {
+            // إذا تم الضغط على النجمة المفعلة -> إزالة التقييم تدريجيًا
+            ratingCount = 0;
+            fadeOutStars();
+          } else {
+            // إذا تم الضغط على نجمة غير مفعلة -> تحديد التقييم
+            ratingCount = index + 1;
+            activateStars(index);
+          }
+
+          // تحديث النص
+          ratingResult.textContent = `التقييم: ${ratingCount} من 5`;
+        });
+      });
+
+      // تفعيل النجوم
+      function activateStars(index) {
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i <= index; i++) {
+          stars[i].classList.add('active');
+        }
+      }
+
+      // تأثير إطفاء النجوم تدريجياً
+      function fadeOutStars() {
+        let i = stars.length - 1; // نبدأ من النجمة الأخيرة (5)
+
+        const interval = setInterval(() => {
+          if (i < 0) {
+            clearInterval(interval); // إيقاف المؤقت
+          } else {
+            stars[i].classList.remove('active'); // إزالة تفعيل النجمة
+            i--;
+          }
+        }, 300); // تحديد مدة التأثير تدريجيًا (يمكنك تعديلها حسب الرغبة)
+      }
+// فتح وإغلاق الدردشة
+const chatContainer = document.getElementById('chat-container');
+const chatToggleBtn = document.getElementById('chat-toggle-btn');
+const closeChatBtn = document.getElementById('close-chat-btn');
+
+chatToggleBtn.addEventListener('click', () => {
+  chatContainer.style.display = (chatContainer.style.display === 'none' || chatContainer.style.display === '') ? 'block' : 'none';
+});
+
+closeChatBtn.addEventListener('click', () => {
+  chatContainer.style.display = 'none';
+});
+
+// الردود التلقائية
+const userInput = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+const chatBox = document.getElementById('chat-box');
+
+const responses = [
+  { keywords: ["السلام عليكم"], response: "وعليكم السلام ورحمة الله وبركاته." },
+  { keywords: ["تسجيل", "إنشاء حساب"], response: "للتسجيل، اضغط على 'إنشاء حساب' واملأ الحقول." },
+  { keywords: ["خدمات"], response: "أقدم خدمات تصميم المواقع، البرمجة، والتصميم الجرافيكي." }
+];
+
+function addMessage(message, isBot) {
+  const messageElement = document.createElement('div');
+  messageElement.textContent = message;
+  messageElement.style.padding = '10px';
+  messageElement.style.margin = '5px';
+  messageElement.style.borderRadius = '5px';
+  messageElement.style.maxWidth = '80%';
+  
+  if (isBot) {
+    messageElement.style.backgroundColor = '#f1f1f1';
+  } else {
+    messageElement.style.backgroundColor = '#0078ff';
+    messageElement.style.color = 'white';
+    messageElement.style.alignSelf = 'flex-end';
+  }
+  
+  chatBox.appendChild(messageElement);
+  chatBox.scrollTop = chatBox.scrollHeight; // التمرير لأسفل
+}
+
+// الرد على الرسائل
+sendBtn.addEventListener('click', () => {
+  const userMessage = userInput.value.trim();
+  if (userMessage === '') return;
+  
+  addMessage(userMessage, false);
+  userInput.value = '';
+  
+  setTimeout(() => {
+    let botResponse = "عذرًا، لم أفهم سؤالك. حاول مرة أخرى.";
+    for (let item of responses) {
+      if (item.keywords.some(keyword => userMessage.includes(keyword))) {
+        botResponse = item.response;
+        break;
+      }
+    }
+    addMessage(botResponse, true);
+  }, 300); // الرد السريع
+});
+
+// أزرار التقييم
+const likeBtn = document.getElementById('like-btn');
+const dislikeBtn = document.getElementById('dislike-btn');
+
+likeBtn.addEventListener('click', () => {
+  addMessage("شكرًا على تقييمك الإيجابي! 😊", true);
+});
+
+dislikeBtn.addEventListener('click', () => {
+  addMessage("آسف إذا لم يكن الرد مفيدًا. سأعمل على التحسين! 😔", true);
+});
+    </script>
+
+
+  </body>
+</html>
